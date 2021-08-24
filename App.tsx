@@ -18,6 +18,8 @@ import 'intl';
 import 'intl/locale-data/jsonp/pt-BR';
 import { StatusBar } from 'react-native';
 
+import { SignIn } from './src/screens/SignIn';
+
 export default function App() {
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
@@ -33,7 +35,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <NavigationContainer>
         <StatusBar barStyle="light-content" />
-        <AppRoutes />
+        <SignIn />
       </NavigationContainer>
     </ThemeProvider>
   );
