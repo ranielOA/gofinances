@@ -3,7 +3,6 @@ import { AuthProvider, useAuth } from './auth';
 import fetchMock from 'jest-fetch-mock';
 import { startAsync } from 'expo-auth-session';
 import { mocked } from 'ts-jest/utils';
-// import { mocked } from 'jest-mock';
 
 fetchMock.enableMocks();
 
@@ -18,14 +17,14 @@ jest.mock('expo-auth-session');
 
 describe('Auth Hook', () => {
   it('should be able to sign in with Google account existing', async () => {
-    const googleMocked = mocked(startAsync as any);
+    const googleMocked = mocked(startAsync);
 
     googleMocked.mockReturnValueOnce({
       type: 'success',
       params: {
         access_token: 'any_token',
       },
-    });
+    } as any);
 
     fetchMock.mockResponseOnce(JSON.stringify(userTest));
 
@@ -39,11 +38,11 @@ describe('Auth Hook', () => {
   });
 
   it('user should not connect if cancel authentication with Google', async () => {
-    const googleMocked = mocked(startAsync as any);
+    const googleMocked = mocked(startAsync);
 
     googleMocked.mockReturnValueOnce({
       type: 'cancel',
-    });
+    } as any);
 
     fetchMock.mockResponseOnce(JSON.stringify(userTest));
 
